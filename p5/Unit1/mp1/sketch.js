@@ -1,5 +1,8 @@
+var cook;
 function setup() {
   createCanvas(960, 720);
+  cook = loadFont("Cookies.ttf");
+  textAlign(CENTER);
 }
 
 function draw() {
@@ -44,6 +47,85 @@ function draw() {
     star(50, 50, 5, 10, 4);
     pop();
 
+    push();
+    translate(100, 150);
+    star(50, 50, 5, 10, 5);
+    pop();
+
+    push();
+    translate(100, 50);
+    star(50, 50, 5, 10, 5);
+    pop();
+
+    push();
+    translate(130, 75);
+    star(50, 50, 5, 10, 5);
+    pop();
+
+    push();
+    translate(150, 130);
+    star(50, 50, 5, 10, 5);
+    pop();
+
+    push();
+    translate(150, 50);
+    star(50, 50, 5, 10, 5);
+    pop();
+
+    push();
+    translate(200, 40);
+    star(50, 50, 5, 10, 5);
+    pop();
+
+    push();
+    translate(200, 175);
+    star(50, 50, 5, 10, 5);
+    pop();
+
+    push();
+    translate(210, 100);
+    star(50, 50, 5, 10, 5);
+    pop();
+
+    push();
+    translate(100, 25);
+    star(50, 50, 5, 10, 5);
+    pop();
+
+    push();
+    translate(145, 15);
+    star(50, 50, 5, 10, 5);
+    pop();
+
+    push();
+    translate(290, 15);
+    star(50, 50, 5, 10, 5);
+    pop();
+
+    push();
+    translate(300, 85);
+    star(50, 50, 5, 10, 5);
+    pop();
+
+    push();
+    translate(310, 170);
+    star(50, 50, 5, 10, 5);
+    pop();
+
+    push();
+    translate(335, 58);
+    star(50, 50, 5, 10, 5);
+    pop();
+
+    push();
+    translate(375, 155);
+    star(50, 50, 5, 10, 5);
+    pop();
+
+    push();
+    translate(390, 39);
+    star(50, 50, 5, 10, 5);
+    pop();
     function star(x, y, radius1, radius2, npoints) {
       let angle = TWO_PI / npoints;
       let halfAngle = angle / 2.0;
@@ -60,6 +142,15 @@ function draw() {
       //https://p5js.org/examples/form-star.html
     }
   } else {
+            fill("white");
+            textFont(cook);
+            textSize(50);
+            text("Luna Spade", 350,50);
+            textSize(40);
+            text("They harnass the power of",400,100);
+            text("the moon and turn it into",400,150);
+            text("powerful moon beams",380, 200);
+
 
   }
   fill(200);
