@@ -24,7 +24,7 @@ function draw() {
 
   switch(state) {
     case 0:
-    text("Heheheheh hohohohho.\nI'm devilish", width/2, 22) ;
+    text("Click the screen once before touching\n\nHeheheheh hohohohho.\nI'm devilish", width/2, 22) ;
     if(numberOfTouches>1) state++;
       break ;
 
