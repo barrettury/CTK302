@@ -34,7 +34,8 @@ function draw() {
       break ;
       case 2:
        image(img2, width/4,height/2);
-       
+       if(state>11) state = 0;
+
        break;
 
   }
