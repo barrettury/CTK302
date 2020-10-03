@@ -1,12 +1,13 @@
-var numberOfTouches ;
+var numberOfTouches;
 let state = 0;
 var s;
 var img1;
 var img2;
 var pet = 0;
-var timer1=0;
-function preload(){
-s = loadSound("getTheChicken.mp3");
+var timer1 = 0;
+
+function preload() {
+  s = loadSound("getTheChicken.mp3");
 }
 
 function setup() {
@@ -22,29 +23,36 @@ function draw() {
   numberOfTouches = touches.length;
   text(numberOfTouches + ' touches', 30, 10);
 
-  switch(state){
+  switch (state) {
     case 0:
-    image(img1,260,300,200,200);
-    if((numberOfTouches>0)&&(mouseX>199)&&(mouseX<301)&&(mouseY>199)&&(mouseY<401)) pet++;
-    if(pet>180) state++;
-    break;
+      image(img1, 260, 300, 200, 200);
+      if ((numberOfTouches > 0) && (mouseX > 199) && (mouseX < 301) && (mouseY > 199) && (mouseY < 401)) {
+        pet++;
+      }
+      if (pet > 180) {
+        state++;
+      }
+      break;
 
     case 1:
-    s.play();
-    state++;
-    break;
+      s.play();
+      state++;
+      break;
 
     case 2:
-    timer1++;
-    if(timer1>120)state++;
-    break;
+      timer1++;
+      if (timer1 > 120) {
+        state++;
+      }
+      break;
 
     case 3:
-    clear();
-    break;
+      clear();
+      break;
   }
 
 }
+
 function touchStarted() {
   getAudioContext().resume();
 }
