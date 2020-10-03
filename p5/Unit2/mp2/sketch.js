@@ -44,7 +44,7 @@ function draw() {
       image(img1, 260, 300, 200, 200);
       image(img2, 100, 190, 250, 250);
       timer++;
-      if (timer > 325) {
+      if (timer > 300) {
         state++;
       }
       break;
