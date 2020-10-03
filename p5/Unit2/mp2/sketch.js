@@ -44,7 +44,7 @@ function draw() {
       image(img1, 260, 300, 200, 200);
       image(img2, 100, 190, 250, 250);
       timer++;
-      if (timer > 400) {
+      if (timer > 370) {
         state++;
       }
       break;
@@ -53,7 +53,7 @@ function draw() {
       x = x - 5;
       if (x > -100) {
         push();
-        translate(x, 300);
+        translate(x, 0);
         image(img1, 260, 300, 200, 200);
         image(img2, 100, 190, 250, 250);
         pop();
