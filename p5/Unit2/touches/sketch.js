@@ -27,15 +27,17 @@ function draw() {
     text("Click the screen once before touching\n\nHeheheheh hohohohho.\nI'm devilish", width/2, 22) ;
     if(numberOfTouches>1) state++;
       break ;
+    case 1:
+    text("Click the screen once before touching\n\nHeheheheh hohohohho.\nI'm devilish", width/2, 22) ;
+    if(numberOfTouches>1) state++;
+      break ;
 
-      case 1:
+      case 2:
        s.play();
        state++;
       break ;
-      case 2:
+      case 3:
        image(img2, width/4,height/2);
-       if(state>11) state = 0;
-
        break;
 
   }
