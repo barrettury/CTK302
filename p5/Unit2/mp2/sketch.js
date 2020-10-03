@@ -40,6 +40,7 @@ function draw() {
       break;
 
     case 2:
+      image(img1, 260, 300, 200, 200);
       timer1++;
       if (timer1 > 120) {
         state++;
@@ -47,7 +48,6 @@ function draw() {
       break;
 
     case 3:
-      clear();
       break;
   }
 
