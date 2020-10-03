@@ -25,7 +25,7 @@ function draw() {
   switch(state){
     case 0:
     image(img1,260,300,200,200);
-    if((touches>0)pet++ //&&(mouseX>199)&&(mouseX<301)&&(mouseY>199)&&(mouseY<401)) pet++;
+    if((numberOfTouches>0)&&(mouseX>199)&&(mouseX<301)&&(mouseY>199)&&(mouseY<401)) pet++;
     if(pet>180) state++;
     break;
 
