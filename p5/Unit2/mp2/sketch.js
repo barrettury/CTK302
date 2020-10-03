@@ -1,10 +1,11 @@
 var numberOfTouches;
 let state = 0;
 var s;
+var x = 250;
 var img1;
 var img2;
 var pet = 0;
-var timer1 = 0;
+var timer = 0;
 
 function preload() {
   s = loadSound("getTheChicken.mp3");
@@ -41,16 +42,24 @@ function draw() {
 
     case 2:
       image(img1, 260, 300, 200, 200);
-      image(img2,100,190,250,250);
-      timer1++;
-      if (timer1 > 400) {
+      image(img2, 100, 190, 250, 250);
+      timer++;
+      if (timer > 400) {
         state++;
       }
       break;
 
     case 3:
-    image(img1, 260, 300, 200, 200);
-    image(img2,100,190,250,250);
+      x = x - 5;
+      if (x > -100) {
+        push();
+        translate(x, 300);
+        image(img1, 260, 300, 200, 200);
+        image(img2, 100, 190, 250, 250);
+        pop();
+      } else {
+        state++;
+      }
       break;
   }
 
