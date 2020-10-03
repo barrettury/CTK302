@@ -13,7 +13,7 @@ function preload() {
 function setup() {
   createCanvas(500, 500);
   img1 = loadImage("Zwei_Chibi.png");
-  //img2 = loadImage("King_K._Rool_Smash_Ultimate.png");
+  img2 = loadImage("RubywithChicken.png");
   imageMode(CENTER);
   textAlign(CENTER);
 }
@@ -41,6 +41,7 @@ function draw() {
 
     case 2:
       image(img1, 260, 300, 200, 200);
+      image(img2,100,190,250,250);
       timer1++;
       if (timer1 > 120) {
         state++;
