@@ -1,7 +1,7 @@
 var numberOfTouches;
 let state = 0;
 var s;
-var x = 250;
+var x = 0;
 var img1;
 var img2;
 var pet = 0;
@@ -51,7 +51,7 @@ function draw() {
 
     case 3:
       x = x - 5;
-      if (x > -100) {
+      if (x > -300) {
         push();
         translate(x, 0);
         image(img1, 260, 300, 200, 200);
