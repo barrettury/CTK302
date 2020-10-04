@@ -1,6 +1,7 @@
 var numberOfTouches;
 let state = 0;
 var s;
+var s2;
 var x = 0;
 var img1;
 var img2;
@@ -12,6 +13,7 @@ var timer = 0;
 
 function preload() {
   s = loadSound("getTheChicken.mp3");
+  s2 = loadSound("WeissHey.mp3");
 }
 
 function setup() {
@@ -30,11 +32,13 @@ function draw() {
   background(240);
   numberOfTouches = touches.length;
   text(numberOfTouches + ' touches', 40, 20);
+  text(mouseX + " " + mouseY, 40,40);
 
   textFont(rwby);
   textSize(20);
   image(img4,width/2, height/2,400,400);
   image(img3,250,300,300,300);
+
   switch (state) {
     case 0:
     text("Pet Zwei to start a cutscene",width/2,40);
@@ -79,4 +83,13 @@ function draw() {
 
 function touchStarted() {
   getAudioContext().resume();
+}
+
+function mouseReleased()
+{
+  if((mouseX>155)&&(mouseX<266)&&(mouseY>214)&&(mouseY<329))
+  {
+    s2.play();
+  }
+
 }
