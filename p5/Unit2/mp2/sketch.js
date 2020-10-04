@@ -32,7 +32,6 @@ function draw() {
   background(240);
   numberOfTouches = touches.length;
   text(numberOfTouches + ' touches', 40, 20);
-  text(mouseX + " " + mouseY, 40,40);
 
   textFont(rwby);
   textSize(20);
