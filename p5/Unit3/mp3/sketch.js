@@ -207,3 +207,7 @@ function checkForKeys() {
     image(img2, kidPos.x, kidPos.y, 150, 150);
 
 }
+
+function touchStarted() {
+  getAudioContext().resume();
+}
