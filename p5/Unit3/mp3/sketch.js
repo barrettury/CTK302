@@ -1,62 +1,60 @@
-let kidPos;
-let pons = [];
 let f1, f2, f3, f4;
 let state = 0;
-let timerHold = 600;
-let timer = timerHold;
-var pieces = 20;
 var music1, music2;
 var one, two, three;
 var ouch, die;
 var img1, img2, img3;
 var logo;
-var pon;
 var gameWidth;
 var gameHeight;
+var townPlay;
+let timer;
+
 
 function preload() {
+  ponPreload();
   music1 = loadSound("sounds/MafiaTown.mp3");
   music2 = loadSound("sounds/MafiaTownRemix.mp3");
   one = loadSound("sounds/One.mp3");
   two = loadSound("sounds/Two.mp3");
   three = loadSound("sounds/Three.mp3");
   die = loadSound("sounds/Die.mp3");
+  ouch = loadSound("sounds/Ow.mp3");
+
 
 
 
 }
 
 function setup() {
-  gameWidth = 600;
-  gameHeight = 400;
+  gameWidth = 900;
+  gameHeight = 580;
   createCanvas(gameWidth, gameHeight);
   textAlign(CENTER);
   imageMode(CENTER);
   ellipseMode(CENTER);
-  music1.play();
+  rectMode(CENTER);
+  music1.loop();
+  music2.loop();
+  music1.pause();
+  music2.pause();
+  townPlay = 0;
   f1 = loadFont("fonts/Jumpman.ttf");
   f2 = loadFont("fonts/rwby_style.ttf");
   f3 = loadFont("fonts/PressStart2P.ttf");
   f4 = loadFont("fonts/CurseCasual.ttf");
-
-  img1 = loadImage("images/HatKid_ScooterLeft1.png");
-  img2 = loadImage("images/HatKid_ScooterRight1.png");
-  img3 = loadImage("images/MafiaTown.jpg");
-  pon = loadImage("images/pon1.png");
   logo = loadImage("images/HiTLogo.png");
 
 
-  kidPos = createVector(width / 2, height - 80);
-  // Spawn 20 objects
-  for (let i = 0; i < pieces; i++) {
-    pons.push(new Pon());
-  }
 }
 
 function draw() {
   switch (state) {
 
     case 0:
+    gameWidth = width;
+    gameHeight = height;
+    createCanvas(gameWidth, gameHeight);
       textSize(30);
       textFont(f4);
       background("blue");
@@ -64,149 +62,149 @@ function draw() {
       image(logo, width / 2, height / 2);
       text("Welcome to", width / 2, height / 5);
       text("Minigames!!!", width / 2, height * 5 / 6);
+      break;
+    case 1:
+    textSize(30);
+    textFont(f4);
+    background("blue");
+    fill("white");
+    text("Which Minigame would you like to play?", width / 2, height / 5);
+    image(logo, width / 2, height / 2);
+    fill("green");
+    rect(100, height / 2,100,100);
+    fill("white");
+    text("Pon\nCollect", 100,height/2);
+    fill("red");
+    rect(800, height / 2,100,100);
+    fill("white");
+    text("Mafia\nRun", 800,height/2);
 
       break;
+    case 2:
+      textSize(30);
+      textFont(f4);
+      background("blue");
+      fill("white");
+      text("Welcome to Pon Catch\nThe goal is to catch all the\nPons before the timer runs out\n\nGood Luck!", width / 2, 20);
+      break;
 
-    case 1:
-      game();
-      textSize(20);
-      fill("black");
-      text(timer, 20, 20);
+    case 3:
+    ponCatch();
+    textSize(30);
+    textFont(f4);
+    fill("black");
+    text(timer,20, 20);
       timer--;
-      if (timer == 180)
-        three.play();
-      if (timer == 120)
-        two.play();
-      if (timer == 60)
-        one.play();
-      if (timer == 0) {
+      if(timer == 180) three.play();
+      if(timer == 120) two.play();
+      if(timer == 60) one.play();
+
+      if (getPonNumber() == 0)
+        state = 6;
+      if (timer < 0){
+        state = 7;
         die.play();
-        state = 3;
       }
 
       break;
 
-    case 2:
+      case 4:
       textSize(30);
       textFont(f4);
-      background("green");
+      background("orange");
       fill("white");
-      text("yay you won", width / 2, height / 2);
-      reset();
+      text("Welcome to Mafia Run\nMafia say goal is to avoid\nMafia for 1 munute\n\nGood Luck!\nMafia think you need it", width / 2, height/2);
       break;
 
-    case 3:
-      background("red")
+      case 5:
+      mafiaRun();
       textSize(30);
       textFont(f4);
-      fill("white");
-      text("boo you lost", width / 2, height / 2);
-      reset();
+      fill("black");
+      text("Time: " + timer,55, 20);
+      text("Lives: " + lives,40, 40);
+
+        timer--;
+        if(timer == 180) three.play();
+        if(timer == 120) two.play();
+        if(timer == 60) one.play();
+
+      if(timer == 0) state = 6;
+      if(lives <1) {
+        state = 7;
+        die.play();
+      }
       break;
-  }
+  case 6:
+    textSize(30);
+  textFont(f4);
+  background("green");
+  fill("white");
+  text("yay you won", width / 2, height / 2);
+  resetMafia();
+  resetPon();
+  break;
+
+  case 7:
+    background("red")
+  textSize(30);
+  textFont(f4);
+  fill("white");
+  text("boo you lost", width / 2, height / 2);
+  resetMafia();
+  resetPon();
+  break;
+}
 }
 
-function game() {
-  image(img3, width / 2, height / 2, gameWidth, gameHeight);
-  // display and move 20 objects
-  for (let i = 0; i < pons.length; i++) {
-    pons[i].display();
-    pons[i].move();
-
-    if (pons[i].pos.dist(kidPos) < 50) {
-      pons.splice(i, 1);
-    }
-  }
-
-  if (pons.length == 0) {
-    state = 2;
-  }
-
-  checkForKeys();
-
-}
-
-
-class Pon {
-
-  // constructor and attributes
-  constructor() {
-    this.pos = createVector(width / 2, height / 2);
-    this.vel = createVector(random(-3, 3), random(-3, 3));
-  }
-
-  // methods
-
-  display() {
-    image(pon, this.pos.x, this.pos.y);
-  }
-
-  move() {
-    this.pos.add(this.vel);
-    if (this.pos.x > width) this.pos.x = 0;
-    if (this.pos.x < 0) this.pos.x = width;
-    if (this.pos.y > height) this.pos.y = 0;
-    if (this.pos.y < 0) this.pos.y = height;
-
-  }
-}
 
 function mouseReleased() {
   switch (state) {
     case 0:
+      music1.play()
       state = 1;
       break;
-
-    case 2:
-      state = 0;
+    case 1:
+    if((mouseX>50) && (mouseX<150) && (mouseY>240) && (mouseY<340)){
+      state = 2;
+      timer = getPonTimer();
+      ponSetup();
+  }
+    if((mouseX>750) && (mouseX<850) && (mouseY>240) && (mouseY<340)){
+      state = 4;
+      timer = getMafiaTimer();
+      mafiaSetup();
+      music1.pause();
+      music2.play()
+    }
       break;
 
-    case 3:
-      state = 0;
+      case 2:
+      state = 3;
+      break;
+
+      case 4:
+      mafiaSetup();
+      state = 5;
+      break;
+
+      case 5:
+      break;
+
+    case 6:
+    state = 0;
+    music1.pause();
+    music2.pause();
+      break;
+
+    case 7:
+    state = 0;
+    music1.pause();
+    music2.pause();
       break;
   }
 }
 
-function reset() {
-  kidPos = createVector(width / 2, height - 80);
-  image(img2, kidPos.x, kidPos.y);
-  pons = [];
-  for (let i = 0; i < pieces; i++) {
-    pons.push(new Pon());
-  }
-  timer = timerHold;
-
-}
-
-function checkForKeys() {
-  if (keyIsDown(UP_ARROW)) {
-    kidPos.y -= 7;
-  }
-  if (keyIsDown(UP_ARROW) && !(keyIsDown(LEFT_ARROW))) {
-    image(img2, kidPos.x, kidPos.y, 150, 150);
-  }
-  if (keyIsDown(DOWN_ARROW)) {
-    kidPos.y += 7;
-  }
-  if (keyIsDown(DOWN_ARROW) && !(keyIsDown(LEFT_ARROW))) {
-    image(img2, kidPos.x, kidPos.y, 150, 150);
-  }
-  if (keyIsDown(RIGHT_ARROW)) {
-    kidPos.x += 7;
-  }
-  if (keyIsDown(RIGHT_ARROW) && !(keyIsDown(LEFT_ARROW))) {
-    image(img2, kidPos.x, kidPos.y, 150, 150);
-  }
-
-  if (keyIsDown(LEFT_ARROW)) {
-    kidPos.x -= 7;
-    image(img1, kidPos.x, kidPos.y, 150, 150);
-
-  }
-  if (!(keyIsDown(UP_ARROW) || keyIsDown(DOWN_ARROW) || keyIsDown(RIGHT_ARROW) || keyIsDown(LEFT_ARROW)))
-    image(img2, kidPos.x, kidPos.y, 150, 150);
-
-}
 
 function touchStarted() {
   getAudioContext().resume();
