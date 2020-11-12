@@ -14,16 +14,22 @@ var char1, char2, char3, char4, char5, char6, char7, char8;
 var p1, p2, p3, p4;
 var back;
 var first, second, third, pcFave;
-var monsterNames = ["Placeholder","Miranda", "Damien", "Scott", "Liam", "Polly", "Vera", "Zoe", "Calculester"]
+var monsterNames = ["Placeholder", "Miranda", "Damien", "Scott", "Liam", "Polly", "Vera", "Zoe", "Calculester"]
 var monsterScores = [];
-var playerNames = ["Placeholder","Oz", "Amira", "Brian", "Vicky"];
+var playerNames = ["Placeholder", "Oz", "Amira", "Brian", "Vicky"];
 var playerScores = [];
 let state = 0;
-
+var music1;
 
 var bubbles = [];
 
+function preload() {
+  music1 = loadSound("RocknRoad.mp3");
+}
+
 function setup() {
+  music1.loop();
+  music1.pause();
   p1 = loadImage("OzMP.png");
   p2 = loadImage("AmiraMP.png");
   p3 = loadImage("BrianMP.png");
@@ -117,7 +123,7 @@ function draw() {
   switch (state) {
     case 0:
       // // iterate through the bubbles and display the objects!
-
+      music1.play();
       state = 1;
       break;
     case 1:
