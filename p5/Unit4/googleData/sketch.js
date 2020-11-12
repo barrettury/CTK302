@@ -258,3 +258,6 @@ function draw() {
       break;
   }
 }
+function touchStarted() {
+  getAudioContext().resume();
+}
