@@ -7,7 +7,7 @@ let alpha = 0,
 let x = 0.0,
   y = 0.0,
   z = 0.0; // accelerometer variables
-let bunnyImage;
+let rabbit, pooh, tigger, pigglet, eeyore, acreWood;
 let xPooh = 0;
 let yPooh = 0;
 let xTig = 0;
@@ -15,6 +15,8 @@ let xEeo = 0;
 let yEeo = 0;
 let xRab = 0;
 let yRab = 0;
+let xPig = 0;
+let yPig = 0;
 var timer = 0;
 
 
@@ -23,8 +25,8 @@ function preload(){
 }
 function setup() {
 
-  createCanvas(720, 720);
-
+  createCanvas(windowWidth, windowHeight);
+  acreWood = loadImage("assets/100AcreWood.jpg");
   rabbit = loadImage("assets/rabbit.png");
   pooh = loadImage("assets/Winniethepooh.png");
   tigger = loadImage("assets/tigger.png");
@@ -39,8 +41,7 @@ function setup() {
 
 function draw() {
 
-  background('#c6f5ff'); // light blue
-
+image(acreWood, width/2, height/2,width,height);
   // the map command !!!!
   // takes your variable and maps it from range 1 to range 2
   // map(yourVar, range1_x, range1_y, range2_x, range2_y) ;
@@ -52,29 +53,36 @@ function draw() {
   yEeo = map(beta, -180, -150, 0, height);
   xRab = map(alpha, 100, 150, 0, width);
   yRab = map(beta, 150, 180, 0, width);
+  xPig = map(alpha, 210, 260, 0, width);
+  yPig = map(beta, 60, 90, 0, height);
   push();
   translate(xPooh, yPooh);
   rotate(radians(gamma)); // rotate the bunny depending on the alpha intake
-  image(pooh, 0, 0, 50, 50);
-  image(pigglet, 0, 0, 50, 50);
+  image(pooh, 0, 0, 100, 100);
+  pop();
+
+  push();
+  translate(xPig, yPig);
+  rotate(radians(gamma));
+  image(pigglet, 0, 0, 100, 100);
   pop();
 
   push();
   translate(xTig, yTig);
   rotate(radians(gamma));
-  image(tigger, 0, 0, 50, 50);
+  image(tigger, 0, 0, 100, 100);
   pop();
 
   push();
   translate(xRab,yRab);
   rotate(radians(gamma));
-  image(rabbit, 0, 0, 50, 50);
+  image(rabbit, 0, 0, 100, 100);
   pop();
 
   push();
   translate(xEeo,yEeo);
   rotate(radians(gamma));
-  image(eeyore, 0, 0, 50, 50);
+  image(eeyore, 0, 0, 100, 100);
   pop();
 
 
