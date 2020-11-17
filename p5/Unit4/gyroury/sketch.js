@@ -8,8 +8,13 @@ let x = 0.0,
   y = 0.0,
   z = 0.0; // accelerometer variables
 let bunnyImage;
-let xPosition = 0;
-let yPosition = 0;
+let xPooh = 0;
+let yPooh = 0;
+let xTig = 0;
+let xEeo = 0;
+let yEeo = 0;
+let xRab = 0;
+let yRab = 0;
 var timer = 0;
 
 
@@ -39,18 +44,37 @@ function draw() {
   // the map command !!!!
   // takes your variable and maps it from range 1 to range 2
   // map(yourVar, range1_x, range1_y, range2_x, range2_y) ;
-  xPosition = map(alpha, 0, 360, 0, width);
-  yPosition = map(beta, -180, 180, 0, height);
+  xPooh = map(alpha, 150, 210, 0, width);
+  yPooh = map(beta, 60, 90, 0, height);
+  xTig = map(alpha, 300, 350, 0, width);
+  yTig = map(beta, -15, 15, 0, height);
+  xEeo = map(alpha, 50, 100, 0, width);
+  yEeo = map(beta, -180, -150, 0, height);
+  xRab = map(alpha, 100, 150, 0, width);
+  yRab = map(beta, 150, 180, 0, width);
   push();
-
-  translate(xPosition, yPosition);
-
+  translate(xPooh, yPooh);
   rotate(radians(gamma)); // rotate the bunny depending on the alpha intake
-  image(pooh, 360, 25, 50, 50);
-  image(pigglet, 450, 25, 50, 50);
-  image(tigger, 50, 360, 50, 50);
-  image(rabbit, 360, 360, 50, 50);
-  image(eeyore, 660, 660, 50, 50);
+  image(pooh, 0, 0, 50, 50);
+  image(pigglet, 0, 0, 50, 50);
+  pop();
+
+  push();
+  translate(xTig, yTig);
+  rotate(radians(gamma));
+  image(tigger, 0, 0, 50, 50);
+  pop();
+
+  push();
+  translate(xRab,yRab);
+  rotate(radians(gamma));
+  image(rabbit, 0, 0, 50, 50);
+  pop();
+
+  push();
+  translate(xEeo,yEeo);
+  rotate(radians(gamma));
+  image(eeyore, 0, 0, 50, 50);
   pop();
 
 
@@ -72,11 +96,16 @@ function draw() {
   text("z = " + z.toFixed(4), 25, 190);
 
   // Text that makes CTK type in the background
-  fill('white');
+  fill('black');
   noStroke();
-  textSize(300);
+  textSize(50);
   textAlign(CENTER);
-  text("ctk", width / 2, height / 2);
+  timer++;
+  if(timer <300)
+  text("Welcome to the \n100 Acre Woods\nScavenger Hunt", width / 2, height / 2);
+  if(timer>299 && timer<600)
+  text("Try to find Pooh and \nall of his friends", width / 2, height / 2);
+
 
 }
 
