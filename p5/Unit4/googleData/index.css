@@ -1,0 +1,9 @@
+footer{
+  font-size: 40;
+}
+footer a{
+  color: green;
+}
+footer a:hover{
+  color: red;
+}
